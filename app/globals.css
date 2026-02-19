@@ -250,7 +250,7 @@ html {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-  
+
 /* Shine border animation */
 @keyframes shine {
   0% {

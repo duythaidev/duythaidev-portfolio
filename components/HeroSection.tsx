@@ -5,6 +5,9 @@ import HeroScene from "./HeroScene";
 import { ChevronDown, Sparkles } from "lucide-react";
 import { BlurFade } from "./blur-fade";
 import { TextEffect } from "./text-effect";
+import { Globe } from "./ui/globe";
+import { AnimatedGridPattern } from "./ui/animated-grid-pattern";
+import { cn } from "@/lib/utils";
 
 const HeroSection = () => {
   return (
@@ -13,9 +16,16 @@ const HeroSection = () => {
       className="relative h-screen overflow-hidden border-b border-border/50"
       aria-label="Hero"
     >
-      <Suspense fallback={<div className="absolute inset-0 bg-background" />}>
-        <HeroScene />
-      </Suspense>
+      <AnimatedGridPattern
+        numSquares={30}
+        maxOpacity={0.1}
+        duration={3}
+        repeatDelay={1}
+        className={cn(
+          "mask-[radial-gradient(500px_circle_at_center,white,transparent)]",
+          "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12",
+        )}
+      />
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 bg-linear-to-b from-background/40 via-transparent to-background/50 pointer-events-none" />
@@ -31,6 +41,10 @@ const HeroSection = () => {
             >
               duythaidev
             </TextEffect>
+            <div className="absolute inset-x-20 bottom-2 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
+            <div className="absolute inset-x-20 bottom-2 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
+            <div className="absolute inset-x-20 bottom-2 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
+            <div className="absolute inset-x-20 bottom-2 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
           </h1>
         </BlurFade>
 

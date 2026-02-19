@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
-import { useRef } from "react"
-import { AnimatedBeam, Circle } from "./animated-beam"
-import { BlurFade } from "./blur-fade"
+import { useRef } from "react";
+import { AnimatedBeam, Circle } from "./animated-beam";
+import { BlurFade } from "./blur-fade";
+import { GlowEffect } from "./ui/glow-effect";
 
 const Icons = {
   react: () => (
@@ -40,17 +41,17 @@ const Icons = {
       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
     </svg>
   ),
-}
+};
 
 export function TechStackSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const div1Ref = useRef<HTMLDivElement>(null)
-  const div2Ref = useRef<HTMLDivElement>(null)
-  const div3Ref = useRef<HTMLDivElement>(null)
-  const div4Ref = useRef<HTMLDivElement>(null)
-  const div5Ref = useRef<HTMLDivElement>(null)
-  const div6Ref = useRef<HTMLDivElement>(null)
-  const div7Ref = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const div1Ref = useRef<HTMLDivElement>(null);
+  const div2Ref = useRef<HTMLDivElement>(null);
+  const div3Ref = useRef<HTMLDivElement>(null);
+  const div4Ref = useRef<HTMLDivElement>(null);
+  const div5Ref = useRef<HTMLDivElement>(null);
+  const div6Ref = useRef<HTMLDivElement>(null);
+  const div7Ref = useRef<HTMLDivElement>(null);
 
   return (
     <section className="py-24 relative">
@@ -64,11 +65,17 @@ export function TechStackSection() {
           </p>
         </BlurFade>
 
-        <BlurFade delay={0.2}>
+        <BlurFade delay={0.2} className="relative">
           <div
-            className="relative flex h-[400px] w-full max-w-3xl mx-auto items-center justify-center overflow-hidden rounded-lg glass p-10"
+            className="relative flex h-[400px] w-full max-w-3xl mx-auto items-center justify-center  rounded-lg bg-card p-10"
             ref={containerRef}
           >
+            <GlowEffect
+              colors={["#0894FF", "#C959DD", "#FF2E54", "#FF9004"]}
+              mode="static"
+              className="absolute inset-0 z-[-1]"
+              blur="medium"
+            />
             <div className="flex size-full max-w-lg flex-row items-stretch justify-between gap-10">
               <div className="flex flex-col justify-center gap-4">
                 <Circle ref={div1Ref} className="bg-card">
@@ -82,7 +89,10 @@ export function TechStackSection() {
                 </Circle>
               </div>
               <div className="flex flex-col justify-center">
-                <Circle ref={div6Ref} className="size-20 bg-primary/20 border-primary">
+                <Circle
+                  ref={div6Ref}
+                  className="size-20 bg-primary/20 border-primary"
+                >
                   <Icons.user />
                 </Circle>
               </div>
@@ -108,7 +118,11 @@ export function TechStackSection() {
               curvature={-75}
               endYOffset={-10}
             />
-            <AnimatedBeam containerRef={containerRef} fromRef={div2Ref} toRef={div6Ref} />
+            <AnimatedBeam
+              containerRef={containerRef}
+              fromRef={div2Ref}
+              toRef={div6Ref}
+            />
             <AnimatedBeam
               containerRef={containerRef}
               fromRef={div3Ref}
@@ -124,7 +138,12 @@ export function TechStackSection() {
               endYOffset={-10}
               reverse
             />
-            <AnimatedBeam containerRef={containerRef} fromRef={div5Ref} toRef={div6Ref} reverse />
+            <AnimatedBeam
+              containerRef={containerRef}
+              fromRef={div5Ref}
+              toRef={div6Ref}
+              reverse
+            />
             <AnimatedBeam
               containerRef={containerRef}
               fromRef={div7Ref}
@@ -158,5 +177,5 @@ export function TechStackSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
