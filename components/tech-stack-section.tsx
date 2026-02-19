@@ -1,0 +1,162 @@
+"use client"
+
+import { useRef } from "react"
+import { AnimatedBeam, Circle } from "./animated-beam"
+import { BlurFade } from "./blur-fade"
+
+const Icons = {
+  react: () => (
+    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-[#61DAFB]">
+      <path d="M12 13.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" />
+      <path
+        fillRule="evenodd"
+        d="M12 21.5c6.351 0 11.5-4.254 11.5-9.5S18.351 2.5 12 2.5.5 6.754.5 12s5.149 9.5 11.5 9.5Zm0-2c4.142 0 7.5-3.358 7.5-7.5S16.142 4.5 12 4.5 4.5 7.858 4.5 12s3.358 7.5 7.5 7.5Z"
+        clipRule="evenodd"
+      />
+    </svg>
+  ),
+  nextjs: () => (
+    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-foreground">
+      <path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 0 1-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 0 0-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.251 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 0 0-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 0 1-.206.214c-.075.037-.14.044-.495.044H7.81l-.108-.068a.438.438 0 0 1-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 0 1 .174-.143c.096-.047.134-.051.54-.051.478 0 .558.018.682.154.035.038 1.337 1.999 2.895 4.361a10760.433 10760.433 0 0 0 4.735 7.17l1.9 2.879.096-.063a12.317 12.317 0 0 0 2.466-2.163 11.944 11.944 0 0 0 2.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.859-8.292-8.208-9.695a12.597 12.597 0 0 0-2.499-.523A33.119 33.119 0 0 0 11.572 0Zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 0 1 .237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 0 1 .233-.296c.096-.05.13-.054.5-.054Z" />
+    </svg>
+  ),
+  typescript: () => (
+    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-[#3178C6]">
+      <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z" />
+    </svg>
+  ),
+  tailwind: () => (
+    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-[#06B6D4]">
+      <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
+    </svg>
+  ),
+  nodejs: () => (
+    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-[#339933]">
+      <path d="M11.998 24c-.321 0-.641-.084-.922-.247l-2.936-1.737c-.438-.245-.224-.332-.08-.383.585-.203.703-.25 1.328-.604.065-.037.151-.023.218.017l2.256 1.339a.29.29 0 0 0 .272 0l8.795-5.076a.277.277 0 0 0 .134-.238V6.921a.283.283 0 0 0-.137-.242l-8.791-5.072a.278.278 0 0 0-.271 0L3.075 6.68a.284.284 0 0 0-.139.241v10.15c0 .099.053.19.139.236l2.409 1.392c1.307.654 2.108-.116 2.108-.89V7.787c0-.142.114-.253.256-.253h1.115c.139 0 .255.112.255.253v10.021c0 1.745-.95 2.745-2.604 2.745-.508 0-.909 0-2.026-.551L2.28 18.675a1.857 1.857 0 0 1-.922-1.604V6.921c0-.659.353-1.275.922-1.603l8.795-5.082c.557-.315 1.296-.315 1.848 0l8.794 5.082c.57.329.924.944.924 1.603v10.15c0 .659-.354 1.273-.924 1.604l-8.794 5.078c-.28.163-.6.247-.925.247zm2.722-6.984c-3.846 0-4.653-1.766-4.653-3.248 0-.142.114-.253.256-.253h1.137c.126 0 .233.091.253.215.172 1.163.687 1.75 3.007 1.75 1.849 0 2.637-.419 2.637-1.4 0-.566-.224-.986-3.1-1.268-2.406-.239-3.894-.769-3.894-2.692 0-1.775 1.496-2.833 4.005-2.833 2.817 0 4.21.977 4.386 3.079a.256.256 0 0 1-.253.28h-1.142a.254.254 0 0 1-.246-.196c-.274-1.216-.939-1.606-2.745-1.606-2.022 0-2.258.705-2.258 1.232 0 .64.278.826 3.005 1.187 2.702.357 3.99.864 3.99 2.757 0 1.917-1.598 3.016-4.385 3.016z" />
+    </svg>
+  ),
+  user: () => (
+    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-foreground">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+    </svg>
+  ),
+}
+
+export function TechStackSection() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const div1Ref = useRef<HTMLDivElement>(null)
+  const div2Ref = useRef<HTMLDivElement>(null)
+  const div3Ref = useRef<HTMLDivElement>(null)
+  const div4Ref = useRef<HTMLDivElement>(null)
+  const div5Ref = useRef<HTMLDivElement>(null)
+  const div6Ref = useRef<HTMLDivElement>(null)
+  const div7Ref = useRef<HTMLDivElement>(null)
+
+  return (
+    <section className="py-24 relative">
+      <div className="container mx-auto px-4">
+        <BlurFade delay={0.1}>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            Tech <span className="text-gradient">Stack</span>
+          </h2>
+          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+            The technologies I use to build modern, performant applications.
+          </p>
+        </BlurFade>
+
+        <BlurFade delay={0.2}>
+          <div
+            className="relative flex h-[400px] w-full max-w-3xl mx-auto items-center justify-center overflow-hidden rounded-lg glass p-10"
+            ref={containerRef}
+          >
+            <div className="flex size-full max-w-lg flex-row items-stretch justify-between gap-10">
+              <div className="flex flex-col justify-center gap-4">
+                <Circle ref={div1Ref} className="bg-card">
+                  <Icons.react />
+                </Circle>
+                <Circle ref={div2Ref} className="bg-card">
+                  <Icons.nextjs />
+                </Circle>
+                <Circle ref={div3Ref} className="bg-card">
+                  <Icons.typescript />
+                </Circle>
+              </div>
+              <div className="flex flex-col justify-center">
+                <Circle ref={div6Ref} className="size-20 bg-primary/20 border-primary">
+                  <Icons.user />
+                </Circle>
+              </div>
+              <div className="flex flex-col justify-center gap-4">
+                <Circle ref={div4Ref} className="bg-card">
+                  <Icons.tailwind />
+                </Circle>
+                <Circle ref={div5Ref} className="bg-card">
+                  <Icons.nodejs />
+                </Circle>
+                <Circle ref={div7Ref} className="bg-card">
+                  <svg viewBox="0 0 24 24" className="w-6 h-6 fill-[#F24E1E]">
+                    <path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117a3.007 3.007 0 0 0 0-6.014h-3.117v6.014zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.587v8.981zm-4.587-7.51a3.007 3.007 0 0 0 0 6.014h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.587v8.98zM8.148 8.981a3.007 3.007 0 0 0 0 6.014h3.117V8.981H8.148zM8.172 24c-2.489 0-4.514-2.014-4.514-4.49s2.025-4.49 4.514-4.49h4.563v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.007 3.007 0 0 0 0 6.014c1.69 0 3.093-1.353 3.093-3.023v-2.991H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.098-7.509a3.007 3.007 0 1 0 .002 6.014 3.007 3.007 0 0 0-.002-6.014z" />
+                  </svg>
+                </Circle>
+              </div>
+            </div>
+
+            <AnimatedBeam
+              containerRef={containerRef}
+              fromRef={div1Ref}
+              toRef={div6Ref}
+              curvature={-75}
+              endYOffset={-10}
+            />
+            <AnimatedBeam containerRef={containerRef} fromRef={div2Ref} toRef={div6Ref} />
+            <AnimatedBeam
+              containerRef={containerRef}
+              fromRef={div3Ref}
+              toRef={div6Ref}
+              curvature={75}
+              endYOffset={10}
+            />
+            <AnimatedBeam
+              containerRef={containerRef}
+              fromRef={div4Ref}
+              toRef={div6Ref}
+              curvature={-75}
+              endYOffset={-10}
+              reverse
+            />
+            <AnimatedBeam containerRef={containerRef} fromRef={div5Ref} toRef={div6Ref} reverse />
+            <AnimatedBeam
+              containerRef={containerRef}
+              fromRef={div7Ref}
+              toRef={div6Ref}
+              curvature={75}
+              endYOffset={10}
+              reverse
+            />
+          </div>
+        </BlurFade>
+
+        <div className="flex flex-wrap justify-center gap-4 mt-12 max-w-3xl mx-auto">
+          {[
+            "React",
+            "Next.js",
+            "TypeScript",
+            "Tailwind CSS",
+            "Node.js",
+            "Figma",
+            "PostgreSQL",
+            "Prisma",
+            "GraphQL",
+            "Docker",
+          ].map((tech, index) => (
+            <BlurFade key={tech} delay={0.3 + index * 0.05}>
+              <span className="px-4 py-2 rounded-full glass text-sm text-foreground/80 hover:text-primary transition-colors cursor-default">
+                {tech}
+              </span>
+            </BlurFade>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
