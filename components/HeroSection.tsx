@@ -1,14 +1,14 @@
 "use client";
-import { Suspense } from "react";
+
 import { motion } from "framer-motion";
-import HeroScene from "./HeroScene";
 import { ChevronDown, Sparkles } from "lucide-react";
 import { BlurFade } from "./blur-fade";
 import { TextEffect } from "./text-effect";
-import { Globe } from "./ui/globe";
 import { AnimatedGridPattern } from "./ui/animated-grid-pattern";
 import { cn } from "@/lib/utils";
 import { GlowingEffect } from "./ui/glowing-effect";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -124,14 +124,11 @@ const HeroSection = () => {
                 transition={{ duration: 0.5, ease: "easeInOut" }}
               />
             </motion.a>
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-8 py-3 rounded-full bg-secondary border-primary border hover:border-primary hover:text-primary transition-all"
-            >
-              Get in Touch
-            </motion.a>
+            <Link href="#contact">
+              <InteractiveHoverButton className="px-8 py-3 rounded-full bg-secondary border-primary/50 border hover:border-primary hover:text-primary transition-all">
+                Get in Touch
+              </InteractiveHoverButton>
+            </Link>
           </div>
         </BlurFade>
       </div>
