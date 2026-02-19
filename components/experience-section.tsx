@@ -84,8 +84,8 @@ const experienceData = [
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="py-24 relative">
-      <div className="container mx-auto px-4 mb-12">
+    <section id="experience" className="py-16 relative">
+      <div className="container mx-auto px-4">
         <BlurFade delay={0.1}>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
             My <span className="text-gradient">Journey</span>

@@ -10,7 +10,6 @@ import { HomeIcon, User, Briefcase, Code2, Mail, Clock, Zap } from "lucide-react
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { TechStackSection } from "@/components/tech-stack-section"
-import { ServicesSection } from "@/components/services-section"
 import { HeroSection } from "@/components/HeroSection"
 
 const dockItems = [
@@ -30,7 +29,6 @@ export default function Page() {
       <Header />
       <HeroSection />
       <AboutSection />
-      <ServicesSection />
       <TechStackSection />
       <ProjectsSection />
       <ExperienceSection />

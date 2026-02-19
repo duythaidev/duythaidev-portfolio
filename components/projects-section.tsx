@@ -46,7 +46,7 @@ export function ProjectsSection() {
   const isInView = useInView(ref, { threshold: 0.1 })
 
   return (
-    <section id="projects" ref={ref} className="py-32 px-6">
+    <section id="projects" ref={ref} className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <BlurFade delay={0.1} inView>
@@ -55,7 +55,7 @@ export function ProjectsSection() {
           <BlurFade delay={0.2} inView>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-balance">
               Projects I've{" "}
-              <span className="text-gradient">
+              <span className="text-primary">
                 <TextEffect per="char" preset="blur-sm" delay={0.3}>
                   crafted
                 </TextEffect>
