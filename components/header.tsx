@@ -21,9 +21,7 @@ export function Header() {
   }, [])
 
   return (
-    <header
-      className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", scrolled ? "glass py-4" : "py-6")}
-    >
+    <header className={cn("fixed top-0 left-0 right-0 z-999 transition-all duration-300", scrolled ? "glass py-4" : "py-6")} >
       <nav className="container mx-auto px-6 flex items-center justify-between">
         <Link
           href="/"

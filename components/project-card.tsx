@@ -64,7 +64,7 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
         rotateY,
         transformStyle: "preserve-3d",
       }}
-      className={`group relative overflow-hidden rounded-2xl glass transition-all duration-700 ${
+      className={`group relative overflow-hidden rounded-2xl glass transition-all duration-700 flex basis-full flex-col tracking-tight text-slate-100/50 w-100 h-100 ${
         project.featured ? "md:row-span-2" : ""
       } ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
       onMouseMove={handleMouseMove}
