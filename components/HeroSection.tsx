@@ -8,6 +8,7 @@ import { TextEffect } from "./text-effect";
 import { Globe } from "./ui/globe";
 import { AnimatedGridPattern } from "./ui/animated-grid-pattern";
 import { cn } from "@/lib/utils";
+import { GlowingEffect } from "./ui/glowing-effect";
 
 const HeroSection = () => {
   return (
@@ -31,6 +32,28 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-linear-to-b from-background/40 via-transparent to-background/50 pointer-events-none" />
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
+        <BlurFade delay={0.1}>
+          <motion.div
+            className="relative mb-8 rounded-full"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <div className="absolute inset-0 rounded-full bg-gradient-primary blur-2xl opacity-40 animate-pulse-glow" />
+            <img
+              src={"https://github.com/shadcn.png"}
+              alt="Alex Chen - Full Stack Developer"
+              className="relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-primary/30"
+            />
+            <GlowingEffect
+              spread={40}
+              glow={true}
+              disabled={false}
+              proximity={64}
+              inactiveZone={0.01}
+            />
+          </motion.div>
+        </BlurFade>
+
         <BlurFade delay={0.2} inView>
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-2">
             <TextEffect
@@ -41,10 +64,10 @@ const HeroSection = () => {
             >
               duythaidev
             </TextEffect>
-            <div className="absolute inset-x-20 bottom-2 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
-            <div className="absolute inset-x-20 bottom-2 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
-            <div className="absolute inset-x-20 bottom-2 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
-            <div className="absolute inset-x-20 bottom-2 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
+            <div className="absolute inset-x-20  bg-linear-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
+            <div className="absolute inset-x-20  bg-linear-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
+            <div className="absolute inset-x-20  bg-linear-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
+            <div className="absolute inset-x-20  bg-linear-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
           </h1>
         </BlurFade>
 
