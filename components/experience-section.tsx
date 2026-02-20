@@ -2,6 +2,7 @@
 
 import { Timeline } from "./timeline"
 import { BlurFade } from "./blur-fade"
+import { GlowingEffect } from "./ui/glowing-effect"
 
 const experienceData = [
   {
@@ -15,10 +16,24 @@ const experienceData = [
         </p>
         <div className="grid grid-cols-2 gap-4">
           <div className="glass rounded-lg p-4">
+            <GlowingEffect
+              spread={40}
+              glow={true}
+              disabled={false}
+              proximity={64}
+              inactiveZone={0.01}
+            />
             <p className="text-primary text-2xl font-bold">15+</p>
             <p className="text-muted-foreground text-sm">Team Members Led</p>
           </div>
-          <div className="glass rounded-lg p-4">
+          <div className="glass rounded-lg p-4">  
+            <GlowingEffect
+              spread={40}
+              glow={true}
+              disabled={false}
+              proximity={64}
+              inactiveZone={0.01}
+            />
             <p className="text-primary text-2xl font-bold">60%</p>
             <p className="text-muted-foreground text-sm">Deploy Time Reduced</p>
           </div>
@@ -55,6 +70,13 @@ const experienceData = [
           performance optimization and achieving 90+ Lighthouse scores.
         </p>
         <div className="glass rounded-lg p-4">
+          <GlowingEffect
+            spread={40}
+            glow={true}
+            disabled={false}
+            proximity={64}
+            inactiveZone={0.01}
+          />
           <p className="text-primary text-2xl font-bold">20+</p>
           <p className="text-muted-foreground text-sm">Projects Delivered</p>
         </div>
@@ -84,8 +106,8 @@ const experienceData = [
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="py-24 relative">
-      <div className="container mx-auto px-4 mb-12">
+    <section id="experience" className="py-16 relative">
+      <div className="container mx-auto px-4">
         <BlurFade delay={0.1}>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
             My <span className="text-gradient">Journey</span>

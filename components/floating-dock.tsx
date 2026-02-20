@@ -40,7 +40,7 @@ function FloatingDockMobile({ items, className }: { items: DockItem[]; className
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute bottom-full mb-2 flex flex-col gap-2"
+            className="absolute left-1/2 bottom-full mb-2 flex flex-col gap-2 -translate-x-1/2"
           >
             {items.map((item, idx) => (
               <motion.div
@@ -52,7 +52,7 @@ function FloatingDockMobile({ items, className }: { items: DockItem[]; className
               >
                 <Link
                   href={item.href}
-                  className="flex h-10 w-10 items-center justify-center rounded-full glass text-foreground"
+                  className="flex h-10 w-10 items-center p-2 justify-center rounded-full glass text-foreground"
                 >
                   {item.icon}
                 </Link>

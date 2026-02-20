@@ -5,6 +5,7 @@ import { useInView } from "@/hooks/use-in-view"
 import { BlurFade } from "@/components/blur-fade"
 import { AnimatedNumber } from "@/components/animated-number"
 import { BorderBeam } from "@/components/border-beam"
+import { GlowingEffect } from "./ui/glowing-effect"
 
 const stats = [
   { value: 50, suffix: "+", label: "Projects Completed" },
