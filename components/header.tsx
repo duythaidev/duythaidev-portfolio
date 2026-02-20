@@ -90,7 +90,7 @@ export function Header() {
         scrolled ? "glass py-4" : "py-6",
       )}
     >
-      <nav className="container mx-auto lg:px-6 flex items-center justify-between">
+      <nav className="container mx-auto px-6 md:px-0 lg:px-6 flex items-center justify-between">
         <div className="flex-1">
           <Link
             href="/"

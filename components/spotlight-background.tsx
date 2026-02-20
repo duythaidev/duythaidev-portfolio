@@ -19,7 +19,7 @@ export function SpotlightBackground() {
       {/* Gradient orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute w-[500px] h-[500px] rounded-full opacity-20 blur-[100px]"
+          className="absolute hidden md:block w-[500px] h-[500px] rounded-full opacity-20 blur-[100px]"
           style={{
             background: "radial-gradient(circle, var(--primary) 0%, transparent 70%)",
             left: mousePosition.x - 250,
@@ -28,12 +28,12 @@ export function SpotlightBackground() {
           }}
         />
         <div
-          className="absolute top-1/4 -left-32 w-96 h-96 rounded-full opacity-10 blur-[100px] animate-float"
+          className="absolute top-1/4 -left-32 w-96 h-96 rounded-full opacity-10 blur-[100px]"
           style={{ background: "var(--primary)" }}
         />
         <div
-          className="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full opacity-10 blur-[100px] animate-float"
-          style={{ background: "var(--primary)", animationDelay: "2s" }}
+          className="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full opacity-10 blur-[100px]"
+          style={{ background: "var(--primary)" }}
         />
       </div>
       {/* Grid pattern */}

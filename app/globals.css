@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* ── Theme files ── */
 @import "./theme-neon.css";
 @import "./theme-amber.css";
 
@@ -11,7 +10,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ── Base layer ── */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -81,8 +79,6 @@ html {
   --animate-lamp: lamp 0.8s ease-out forwards;
 }
 
-/* ── Keyframes ── */
-
 @keyframes marquee {
   to {
     transform: translateX(calc(-50% - 0.5rem));
@@ -149,8 +145,6 @@ html {
   inherits: false;
 }
 
-/* ── Global utility classes ── */
-
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
@@ -160,7 +154,6 @@ html {
   animation: shine 4s linear infinite;
 }
 
-/* Noise grain overlay */
 .grain::before {
   content: "";
   position: absolute;
