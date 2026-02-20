@@ -40,7 +40,7 @@ const HeroSection = () => {
           >
             <div className="absolute inset-0 rounded-full bg-gradient-primary blur-2xl opacity-40 animate-pulse-glow" />
             <img
-              src={"https://github.com/shadcn.png"}
+              src={"https://avatars.githubusercontent.com/u/199640274?s=400&u=6d8ea65fa19a68b7f9b5eec1824187ba57b321a9&v=4"}
               alt="Alex Chen - Full Stack Developer"
               className="relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-primary/30"
             />

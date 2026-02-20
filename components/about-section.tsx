@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { FeatureCarousel, type ServiceStep } from "./ui/feature-carousel";
 
-// Services lifted from ServicesSection — now displayed inside the carousel
 const serviceSteps: ServiceStep[] = [
   {
     id: "1",

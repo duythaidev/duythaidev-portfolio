@@ -9,7 +9,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "John Doe — Creative Developer",
+  title: "duythaidev — Portfolio",
   description:
     "Creative developer crafting digital experiences with code and design.",
   generator: "v0.app",

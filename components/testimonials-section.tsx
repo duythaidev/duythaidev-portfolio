@@ -18,7 +18,7 @@ const testimonials = [
   },
   {
     quote:
-      "The best developer I've worked with. John doesn't just write code - he understands the business goals and creates solutions that drive real results.",
+      "The best developer I've worked with. Thai doesn't just write code - he understands the business goals and creates solutions that drive real results.",
     name: "Emily Watson",
     title: "Founder at StartupXYZ",
   },

@@ -14,7 +14,7 @@ export function Footer() {
           </Link>
 
           {/* Copyright */}
-          <p className="text-sm text-muted-foreground">© {currentYear} John Doe. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© {currentYear} duythaidev. All rights reserved.</p>
 
           {/* Social links */}
           <div className="flex items-center gap-4">
