@@ -32,7 +32,7 @@ export function SpotlightBackground() {
           style={{ background: "var(--primary)" }}
         />
         <div
-          className="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full opacity-10 blur-[100px]"
+          className="absolute hidden md:block bottom-1/4 -right-32 w-80 h-80 rounded-full opacity-10 blur-[100px]"
           style={{ background: "var(--primary)" }}
         />
       </div>

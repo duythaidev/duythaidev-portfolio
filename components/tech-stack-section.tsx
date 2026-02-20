@@ -81,7 +81,7 @@ export function TechStackSection() {
             <GlowEffect
               colors={["#0894FF", "#C959DD", "#FF2E54", "#FF9004"]}
               mode="static"
-              className="absolute inset-0 z-[-1]"
+              className="hidden md:block absolute inset-0 z-[-1]"
               blur="medium"
             />
             <div className="flex size-full max-w-lg flex-row items-stretch justify-between gap-10">
