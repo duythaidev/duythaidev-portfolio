@@ -49,7 +49,7 @@ export function ProjectsSection() {
   return (
     <section id="projects" ref={ref} className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <BlurFade delay={0.1} inView>
             <p className="text-primary text-sm font-medium tracking-wider uppercase mb-4">
               Selected Work
@@ -68,9 +68,10 @@ export function ProjectsSection() {
         </div>
 
         {/* Bento grid with perspective */}
-        <div className="grid md:grid-cols-2 gap-y-52" >
+        <div className="grid md:grid-cols-2 gap-y-20">
           {projects.map((project, index) => (
             <PinContainer
+              key={project.title}
               title="github.com/duythaidev"
               href="https://github.com/duythaidev"
               className="mb-6"

@@ -2,7 +2,15 @@
 
 import { useRef } from "react";
 import { useInView } from "@/hooks/use-in-view";
-import { Github, Linkedin, Twitter, Code2, Palette, Rocket, Sparkles } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Code2,
+  Palette,
+  Rocket,
+  Sparkles,
+  Facebook,
+} from "lucide-react";
 import { FeatureCarousel, type ServiceStep } from "./ui/feature-carousel";
 
 // Services lifted from ServicesSection — now displayed inside the carousel
@@ -105,6 +113,7 @@ export function AboutSection() {
             <div className="flex items-center gap-4 mt-8">
               <a
                 href="#"
+                target="_blank"
                 className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all"
                 aria-label="GitHub"
               >
@@ -112,6 +121,7 @@ export function AboutSection() {
               </a>
               <a
                 href="#"
+                target="_blank"
                 className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all"
                 aria-label="LinkedIn"
               >
@@ -119,10 +129,11 @@ export function AboutSection() {
               </a>
               <a
                 href="#"
+                target="_blank"
                 className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all"
-                aria-label="Twitter"
+                aria-label="Facebook"
               >
-                <Twitter className="w-5 h-5" />
+                <Facebook className="w-5 h-5" />
               </a>
             </div>
           </div>

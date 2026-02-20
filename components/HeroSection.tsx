@@ -14,7 +14,7 @@ const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative h-screen overflow-hidden border-b border-border/50"
+      className="relative min-h-screen h-screen overflow-hidden border-b border-border/50"
       aria-label="Hero"
     >
       <AnimatedGridPattern
