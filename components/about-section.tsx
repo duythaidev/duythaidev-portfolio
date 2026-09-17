@@ -2,16 +2,9 @@
 
 import { useRef } from "react";
 import { useInView } from "@/hooks/use-in-view";
-import {
-  Github,
-  Linkedin,
-  Code2,
-  Palette,
-  Rocket,
-  Sparkles,
-  Facebook,
-} from "lucide-react";
+import { Code2, Palette, Rocket, Sparkles } from "lucide-react";
 import { FeatureCarousel, type ServiceStep } from "./ui/feature-carousel";
+import { socialLinks } from "@/lib/utils";
 
 const serviceSteps: ServiceStep[] = [
   {
@@ -80,7 +73,6 @@ export function AboutSection() {
     <section id="about" ref={ref} className="py-32 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Left column - Info */}
           <div
             className={`transition-all duration-700 ${
               isInView
@@ -108,42 +100,28 @@ export function AboutSection() {
               </p>
             </div>
 
-            {/* Social links */}
             <div className="flex items-center gap-4 mt-8">
-              <a
-                href="#"
-                target="_blank"
-                className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all"
-                aria-label="GitHub"
-              >
-                <Github className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
+              {socialLinks.map((socialLinks) => (
+                <a
+                  key={socialLinks.label}
+                  href={socialLinks.value}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all"
+                  aria-label={socialLinks.label}
+                >
+                  <socialLinks.icon className="w-5 h-5" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Right column - Services Carousel */}
-          <div>
+          <div className="about-carousel">
             <FeatureCarousel
               title="What I Offer"
               description="Click to explore each service"
               serviceSteps={serviceSteps}
-              bgClass="bg-gradient-to-tr from-neutral-900/90 to-neutral-800/90"
+              bgClass="bg-card shadow-[-2px_2px_15px] shadow-[#38bdf8]/15"
             />
           </div>
         </div>

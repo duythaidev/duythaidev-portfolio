@@ -58,7 +58,7 @@ export function ContactSection() {
             {/* Contact info */}
             <div className="space-y-4">
               {[
-                { icon: Mail, label: "Email", value: "hello@johndoe.dev" },
+                { icon: Mail, label: "Email", value: "" },
                 { icon: MapPin, label: "Location", value: "San Francisco, CA" },
                 {
                   icon: Clock,

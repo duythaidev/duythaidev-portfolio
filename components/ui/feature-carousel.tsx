@@ -487,7 +487,7 @@ function FeatureCard({
     >
       <div
         className={clsx(
-          "group relative w-full overflow-hidden rounded-3xl border border-black/10 bg-gradient-to-b from-neutral-900/90 to-stone-800 transition duration-300 dark:from-neutral-950/90 dark:to-neutral-800/90",
+          "group relative w-full overflow-hidden rounded-3xl border border-black/10 transition duration-300 ",
           "md:hover:border-transparent",
           bgClass,
         )}
@@ -838,7 +838,7 @@ export function FeatureCarousel({
       </motion.div>
       {/* Click overlay to advance */}
       <motion.div
-        className="absolute right-0 top-0 z-50 h-full w-full cursor-pointer md:left-0"
+        className="absolute right-0 top-0 z-50 h-full w-full md:left-0"
         onClick={handleIncrement}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}

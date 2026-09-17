@@ -1,8 +1,8 @@
-import Link from "next/link"
-import { Facebook, Github, Linkedin, Twitter } from "lucide-react"
+import Link from "next/link";
+import { socialLinks } from "@/lib/utils";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="py-12 px-6 border-t border-border">
@@ -14,22 +14,26 @@ export function Footer() {
           </Link>
 
           {/* Copyright */}
-          <p className="text-sm text-muted-foreground">© {currentYear} duythaidev. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">
+            © {currentYear} duythaidev. All rights reserved.
+          </p>
 
           {/* Social links */}
           <div className="flex items-center gap-4">
-            <a href="#" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
-              <Github className="w-5 h-5" />
-            </a>
-            <a href="#" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="LinkedIn">
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a href="#" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Facebook">
-              <Facebook className="w-5 h-5" />
-            </a>
+            {socialLinks.map((link, index) => (
+              <Link
+                key={index}
+                href={link.value}
+                target="_blank"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label={link.label}
+              >
+                <link.icon className="w-5 h-5" />
+              </Link>
+            ))}
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }
