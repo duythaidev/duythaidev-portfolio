@@ -28,3 +28,6 @@ next-env.d.ts
 .next
 node_modules
 dist
+docs
+pnpm-lock.yaml
+package-lock.json
