@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ChevronDown, Sparkles } from "lucide-react";
 import { BlurFade } from "./blur-fade";
 import { TextEffect } from "./text-effect";

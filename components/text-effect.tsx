@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo, useCallback } from "react"
-import { motion, type Variants } from "framer-motion"
+import { motion, type Variants } from "motion/react"
 import type { JSX } from "react/jsx-runtime"
 
 type TextEffectProps = {
