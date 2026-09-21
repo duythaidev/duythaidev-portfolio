@@ -8,6 +8,7 @@ import { TextEffect } from "@/components/text-effect";
 import { BorderBeam } from "@/components/border-beam";
 import { motion } from "motion/react";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import FormInput from "./form/input";
 
 export function ContactSection() {
   const ref = useRef<HTMLElement>(null);
@@ -110,14 +111,13 @@ export function ContactSection() {
                   as="div"
                   className=" items-center p-0 w-full flex-1  "
                 >
-                  <input
+                  <FormInput
                     type="text"
                     id="name"
                     value={formState.name}
                     onChange={(e) =>
                       setFormState({ ...formState, name: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-lg bg-secondary border border-border focus:border-primary focus:outline-none transition-colors text-foreground"
                     placeholder="Your name"
                     required
                   />
@@ -136,14 +136,13 @@ export function ContactSection() {
                   as="div"
                   className=" items-center p-0 w-full flex-1  "
                 >
-                  <input
+                  <FormInput
                     type="email"
                     id="email"
                     value={formState.email}
                     onChange={(e) =>
                       setFormState({ ...formState, email: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-lg bg-secondary border border-border focus:border-primary focus:outline-none transition-colors text-foreground"
                     placeholder="your@email.com"
                     required
                   />
