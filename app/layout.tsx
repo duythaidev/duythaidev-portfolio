@@ -5,7 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
-  title: "duythaidev — Portfolio",
+  title: "duythaidev - Portfolio",
   description:
     "Creative developer crafting digital experiences with code and design.",
   generator: "v0.app",

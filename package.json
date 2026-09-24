@@ -61,12 +61,12 @@
     "react-resizable-panels": "^2.1.7",
     "react-wrap-balancer": "^1.1.1",
     "recharts": "2.15.4",
-    "rhubarb-lip-sync-wasm": "^0.1.8",
     "sonner": "^1.7.4",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.183.2",
     "vaul": "^1.1.2",
+    "wawa-lipsync": "^0.0.2",
     "zod": "3.25.76"
   },
   "devDependencies": {
