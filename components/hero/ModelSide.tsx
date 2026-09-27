@@ -1,11 +1,12 @@
+"use client";
+
 import { Canvas } from "@react-three/fiber";
+
+import { Suspense, useEffect, useRef, useState } from "react";
+
+import { ModelEnvironment } from "./ModelEnvironment";
+import { Lipsync } from "wawa-lipsync";
 import ChatBar from "./ChatBar";
-
-import { useEffect, useRef, useState } from "react";
-
-import { LipSyncEngine } from "lip-sync-engine";
-import type { MouthCue } from "./My3DModel";
-import { Experience } from "./Experience";
 
 async function base64ToArrayBuffer(base64String: string): Promise<ArrayBuffer> {
   // Add data URI prefix if it is missing
@@ -19,23 +20,28 @@ async function base64ToArrayBuffer(base64String: string): Promise<ArrayBuffer> {
 
 interface AudioChunks {
   audioUrl: string;
-  mouthCues: MouthCue[];
 }
+
+export const lipsyncManager =
+  typeof window !== "undefined" ? new Lipsync() : (null as unknown as Lipsync);
+
 export default function ModelSide() {
   const [loading, setLoading] = useState(false);
 
-  const [mouthCues, setMouthCues] = useState<MouthCue[]>([]);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioChunksRef = useRef<AudioChunks[]>([]);
   const isPlayingRef = useRef(false);
 
-  const engineRef = useRef(LipSyncEngine.getInstance());
-
-  // Init WASM 1 lần (load từ CDN mặc định)
-  useEffect(() => {
-    engineRef.current.init(); // hoặc truyền path tự host nếu muốn
-    return () => engineRef.current.destroy();
-  }, []);
+  const handleAudioPlay = () => {
+    const audio = audioRef.current;
+    if (audio && audio.src && lipsyncManager) {
+      try {
+        lipsyncManager.connectAudio(audio);
+      } catch (err) {
+        console.warn("lipsyncManager.connectAudio error:", err);
+      }
+    }
+  };
 
   // Process và phát âm thanh theo thứ tự
   const continueProcess = () => {
@@ -49,8 +55,11 @@ export default function ModelSide() {
       const currentVoice = audioChunksRef.current.shift();
 
       audio.src = currentVoice?.audioUrl || "";
-      audio.play();
-      setMouthCues(currentVoice?.mouthCues || []);
+      handleAudioPlay();
+      audio.play().catch((err) => {
+        console.warn("Audio play error:", err);
+        isPlayingRef.current = false;
+      });
 
       audio.onended = () => {
         isPlayingRef.current = false;
@@ -132,24 +141,12 @@ export default function ModelSide() {
   const processVoiceData = async (voiceData: { audio: string }) => {
     try {
       const voiceBuffer = await base64ToArrayBuffer(voiceData.audio);
-      console.log("voiceBuffer", voiceBuffer);
       // 1. Tạo blob URL để phát audio
-      const blob = new Blob([voiceBuffer], { type: "audio/wav" }); // hoặc audio/mpeg tùy backend
+      const blob = new Blob([voiceBuffer], { type: "audio/mp3" });
 
       const audioUrl = URL.createObjectURL(blob);
 
-      const pcm16 = new Int16Array(voiceBuffer.slice(44));
-
-      // 
-      const result = await engineRef.current.analyze(pcm16, {
-        sampleRate: 16000,
-      });
-
-      console.log("audioUrl", audioUrl);
-      console.log("result", result);
-
       audioChunksRef.current.push({
-        mouthCues: result.mouthCues as MouthCue[],
         audioUrl,
       });
 
@@ -164,16 +161,19 @@ export default function ModelSide() {
     <>
       <Canvas
         style={{ height: "90vh" }}
-        shadows
         camera={{ position: [3, 3, 3], fov: 30 }}
+        gl={{ powerPreference: "low-power", antialias: true }}
       >
-        <Experience mouthCues={[]} audioRef={audioRef} />
+        <Suspense fallback={null}>
+          <ModelEnvironment audioRef={audioRef} />
+        </Suspense>
       </Canvas>
 
-      <div className="absolute bottom-0 -translate-x-1/2 left-1/2">
+      <div className="absolute bottom-4 -translate-x-1/2 left-1/2 z-20">
         <ChatBar handleGenerate={handleGenerate} loading={loading} />
       </div>
-      <audio hidden ref={audioRef}></audio>
+
+      <audio hidden ref={audioRef} onPlay={handleAudioPlay}></audio>
     </>
   );
 }
