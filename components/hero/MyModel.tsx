@@ -110,7 +110,6 @@ export function MyModel(props: JSX.IntrinsicElements["group"] & AvatarProps) {
         : `viseme_${viseme}`
       : "viseme_sil";
 
-    // Danh sách các mesh có morph targets cần áp dụng viseme
     const morphMeshes = [
       nodes.AvatarHead,
       nodes.AvatarTeethLower,
@@ -240,8 +239,5 @@ export function MyModel(props: JSX.IntrinsicElements["group"] & AvatarProps) {
     </group>
   );
 }
-
-export { MyModel as Model };
-export default MyModel;
 
 useGLTF.preload("/models/duythaidev.glb");
