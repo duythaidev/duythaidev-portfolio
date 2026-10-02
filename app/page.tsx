@@ -10,7 +10,7 @@ import { HomeIcon, User, Briefcase, Mail, Clock } from "lucide-react"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { TechStackSection } from "@/components/tech-stack-section"
-import { HeroSection } from "@/components/HeroSection"
+import { HeroSection } from "@/components/hero/HeroSection"
 
 const dockItems = [
   { title: "Home", icon: <HomeIcon className="w-full h-full" />, href: "#" },
