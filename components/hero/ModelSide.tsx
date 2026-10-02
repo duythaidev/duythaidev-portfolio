@@ -1,6 +1,6 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 
 import { Suspense, useEffect, useRef, useState } from "react";
 
@@ -157,11 +157,12 @@ export default function ModelSide() {
       console.log(error);
     }
   };
+
   return (
     <>
       <Canvas
-        style={{ height: "90vh" }}
-        camera={{ position: [3, 3, 3], fov: 30 }}
+        style={{ height: "100vh" }}
+        camera={{ position: [0.54, 1.68, 2.15], fov: 30 }}
         gl={{ powerPreference: "low-power", antialias: true }}
       >
         <Suspense fallback={null}>
