@@ -6,4 +6,5 @@ export const env ={
     FACEBOOK_URL: process.env.FACEBOOK_URL || '',
     NUMBER: process.env.NUMBER || '',
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || '',
+    RESEND_API_KEY: process.env.RESEND_API_KEY || '',
 }

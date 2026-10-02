@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "app/api/queues/contact/route.ts": {
+      "experimentalTriggers": [{ "type": "queue/v2beta", "topic": "contacts" }]
+    }
+  }
+}
+

@@ -1,17 +1,15 @@
 "use client";
 
-import type React from "react";
-import { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Send, Mail, MapPin, Clock } from "lucide-react";
 import { BlurFade } from "@/components/blur-fade";
 import { TextEffect } from "@/components/text-effect";
 import { BorderBeam } from "@/components/border-beam";
 import { motion } from "motion/react";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import FormInput from "./form/input";
+import FormInput from "../form/input";
 
 export function ContactSection() {
-  const ref = useRef<HTMLElement>(null);
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -19,17 +17,16 @@ export function ContactSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     // Simulate submission
     await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsSubmitting(false);
-    console.log(formState);
   };
 
   return (
-    <section id="contact" ref={ref} className="py-32 px-6">
+    <section id="contact" className="py-32 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Left column */}
@@ -60,11 +57,11 @@ export function ContactSection() {
             <div className="space-y-4">
               {[
                 { icon: Mail, label: "Email", value: "" },
-                { icon: MapPin, label: "Location", value: "San Francisco, CA" },
+                { icon: MapPin, label: "Location", value: "Ha Noi, Vietnam" },
                 {
                   icon: Clock,
                   label: "Availability",
-                  value: "Open for freelance",
+                  value: "Open for work",
                 },
               ].map((item, index) => (
                 <BlurFade
