@@ -4,29 +4,12 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-export const metadata: Metadata = {
+import meta from "@/lib/meta";
+import { jsonLd } from "@/lib/json-ld";
+
+export const metadata: Metadata = meta({
   title: "duythaidev - Portfolio",
-  description:
-    "Creative developer crafting digital experiences with code and design.",
-  generator: "v0.app",
-  icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
-  },
-};
+});
 
 export default function RootLayout({
   children,
@@ -35,6 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <body className={`font-sans antialiased`}>
         <ThemeProvider
           attribute="data-theme"
